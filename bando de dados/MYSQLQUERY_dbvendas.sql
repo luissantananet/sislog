@@ -191,9 +191,9 @@ ALTER TABLE tblpedidoitem ADD CONSTRAINT FK_tblpeditem_prod
 create table tblfuncionario(
 	idfunc int not null AUTO_INCREMENT,
     idpessoafilial int not null DEFAULT 1,
-    nomecompleto VARCHAR(100) not null DEFAULT 'funcionario',
-    login VARCHAR(50) not null DEFAULT 'funcionario',
-    senha VARCHAR(50) not null DEFAULT '123456',
+    nomecompleto VARCHAR(100) not null DEFAULT 'administrador',
+    login VARCHAR(50) not null DEFAULT 'adm',
+    senha VARCHAR(50) not null DEFAULT 'adm',
     PRIMARY KEY(idfunc, idpessoafilial)
 );#default charset = uft8;
 
