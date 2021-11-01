@@ -1,6 +1,6 @@
 #criar banco
 #ENGINE = InnoDBInnoDB;
-create database dbvendas;# default character set utf8 default collate utf8_general_ci;
+create database dbvendas default character set utf8 default collate utf8_general_ci;
 USE dbvendas;
 
 -- --------------------------------------------------------
@@ -190,7 +190,7 @@ ALTER TABLE tblpedidoitem ADD CONSTRAINT FK_tblpeditem_prod
 
 create table tblfuncionario(
 	idfunc int not null AUTO_INCREMENT,
-    idpessoafilial int not null ,
+    idpessoafilial int not null DEFAULT 1,
     nomecompleto VARCHAR(100) not null DEFAULT 'funcionario',
     login VARCHAR(50) not null DEFAULT 'funcionario',
     senha VARCHAR(50) not null DEFAULT '123456',
@@ -205,10 +205,10 @@ ALTER TABLE tblfuncionario ADD CONSTRAINT FK_tblfun_fili
 -- --------------------------------------------------------
 insert into tblpessoatipo(descricao) values('Fisico');
 insert into tblpessoatipo(descricao) values('Juridico');
-#INSERT into tblfuncionario(idpessoafilial, nomecompleto, login, senha) VALUES ("ADMINISTRADOR","adm","adm2020");
 INSERT INTO tbloperacao(descricao) VALUES('Compra');
 INSERT INTO tbloperacao(descricao) VALUES('Venda');
 INSERT INTO tblsituacao(descricao) VALUES('Aberto');
 INSERT INTO tblsituacao(descricao) VALUES('Fechado');
 #INSERT dados na tabela pessoafisica
-call usp_up_ins_pessoafisica('07261662448','7755065','Santana',1,'55500050','vasco da gama','vasco da gama','recife','PE','8132326060','81985323260','luissantananet@gmail.com');
+#call uspPessoaFisicaInserir('07261662448','7755065','Luis Santana','55500050','vasco da gama, 334','vasco da gama','recife','PE','8132326060','81985323260','luissantananet@gmail.com');
+#call uspFuncionarioInserir(1,'ADMINISTRADOR','adm','adm2020');
