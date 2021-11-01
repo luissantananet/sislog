@@ -8,7 +8,7 @@ numero_id = 0
 banco = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="1@!Cofggcvf",
+    passwd="Cofggcvf",
     database="newprojet"
 )
 # fuções da tela login
