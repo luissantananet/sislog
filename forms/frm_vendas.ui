@@ -428,8 +428,7 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>linenunprod_2</tabstop>
-  <tabstop>linedescprod_2</tabstop>
+  <tabstop>comboBox</tabstop>
   <tabstop>btn_pesquisaprod</tabstop>
   <tabstop>edt_quant</tabstop>
   <tabstop>btn_inserir</tabstop>
@@ -441,12 +440,14 @@
   <tabstop>btn_finalizar</tabstop>
   <tabstop>btn_cancelar</tabstop>
   <tabstop>btn_fechar</tabstop>
+  <tabstop>linedescprod_2</tabstop>
   <tabstop>line_idpedido</tabstop>
   <tabstop>line_itenstotal</tabstop>
   <tabstop>line_valoritenstotal</tabstop>
   <tabstop>tableWidget</tabstop>
   <tabstop>lineestoque_2</tabstop>
   <tabstop>linedatahora</tabstop>
+  <tabstop>linenunprod_2</tabstop>
  </tabstops>
  <resources/>
  <connections/>
