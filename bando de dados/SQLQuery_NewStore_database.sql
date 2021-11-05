@@ -35,6 +35,9 @@ create table tblestoque(
     quantidade varchar(5),
     primary key(idestoque)
 );
+ALTER TABLE tblestoque ADD CONSTRAINT FK_tblprod_estoq
+	FOREIGN KEY(idestoque) REFERENCES tblproduto(idproduto);
+
 CREATE TABLE tblcliente(
     idcliente INT not null AUTO_INCREMENT,
     cnpjcpf varchar(14) not null,
