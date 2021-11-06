@@ -86,3 +86,4 @@ ALTER TABLE tblpedidoitem ADD CONSTRAINT FK_tblpeditem_prod
 -- --------------------------------------------------------
 
 insert into tbllogin(nome, login, senha) values('Administrador','adm','adm');
+insert into tblcliente(cnpjcpf,descricao,cep,endereco,bairro,cidade,uf,telefone,celular,email) values('12378123000182','Consumidor','90200500','rua do consumidor','São Luiz','Gravataí','RS','8133048810','81988101037','teste@testes.com.br');
