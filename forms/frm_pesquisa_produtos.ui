@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>701</width>
-    <height>505</height>
+    <width>690</width>
+    <height>480</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>690</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>690</width>
+    <height>480</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Produtos</string>
@@ -18,7 +30,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>20</y>
       <width>51</width>
       <height>20</height>
      </rect>
@@ -28,7 +40,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>40</y>
+      <y>20</y>
       <width>271</width>
       <height>20</height>
      </rect>
@@ -38,7 +50,7 @@
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>40</y>
+      <y>20</y>
       <width>113</width>
       <height>20</height>
      </rect>
@@ -48,7 +60,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>40</y>
+      <y>20</y>
       <width>113</width>
       <height>20</height>
      </rect>
@@ -58,7 +70,7 @@
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>40</y>
+      <y>20</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -71,7 +83,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>25</y>
+      <y>5</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -90,9 +102,9 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>25</y>
-      <width>47</width>
-      <height>13</height>
+      <y>5</y>
+      <width>71</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="baseSize">
@@ -102,15 +114,15 @@
      </size>
     </property>
     <property name="text">
-     <string>Drecição</string>
+     <string>Descrição</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>25</y>
-      <width>91</width>
+      <y>5</y>
+      <width>101</width>
       <height>16</height>
      </rect>
     </property>
@@ -128,7 +140,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>25</y>
+      <y>5</y>
       <width>101</width>
       <height>16</height>
      </rect>
@@ -147,7 +159,7 @@
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>450</y>
+      <y>430</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -160,7 +172,7 @@
     <property name="geometry">
      <rect>
       <x>530</x>
-      <y>450</y>
+      <y>430</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -173,10 +185,23 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
+      <y>60</y>
       <width>671</width>
       <height>361</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_estoque">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>430</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Estoque</string>
     </property>
    </widget>
   </widget>
@@ -185,8 +210,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>701</width>
-     <height>21</height>
+     <width>690</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
