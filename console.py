@@ -33,15 +33,14 @@ def funcao_login():
 def cadastroProduto():
     global numero_id
 
-    linhaCod = frm_produto.lineEdit_3.text() #campo codico
-    linhaDesc = frm_produto.lineEdit_2.text() #campo descrição 
-    linhaGrupo = frm_produto.lineEdit_4.text() #campo grupo
-    linhaFab = frm_produto.lineEdit_6.text() #campo fabricante 
-    linhaUnd = frm_produto.lineEdit_7.text() #campo undade
+    linhaCod = frm_produto.line_ean.text() #campo codico
+    linhaDesc = frm_produto.line_descricao.text() #campo descrição 
+    linhaGrupo = frm_produto.line_grupo.text() #campo grupo
+    linhaFab = frm_produto.line_fabric.text() #campo fabricante 
+    linhaUnd = frm_produto.line_tipo_und.text() #campo undade
     linhaPrecocomp = frm_produto.precounid.text() #campo preço por unidade
     linhaprecovenda = frm_produto.precovenda.text() #campo preço de venda
     linhamarkup = frm_produto.linemarkup.text() #campo margem de lucro
-    quantestoque = frm_produto.quantestoque.text() #campo de quantidade estoque
     #comando mysql para inserir dados no banco
     cursor = banco.cursor()
     comando_SQL_id = "SELECT id FROM produtos"
@@ -56,7 +55,7 @@ def cadastroProduto():
         banco.commit()
     else:
         cursor = banco.cursor()
-        cursor.execute ("UPDATE produtos SET codico ='{}', descricao ='{}', grupo ='{}', fabricante ='{}', unidade ='{}',pcound ='{}', pcovenda ='{}', markup ='{}', quantestoque ='{}' WHERE id {}".format(linhaCod, linhaDesc, linhaGrupo, linhaFab, linhaUnd, linhaPrecocomp, linhaprecovenda, linhamarkup,quantestoque, numero_id))
+        cursor.execute ("UPDATE produtos SET codico ='{}', descricao ='{}', grupo ='{}', fabricante ='{}', unidade ='{}',pcound ='{}', pcovenda ='{}', markup ='{}' WHERE id {}".format(linhaCod, linhaDesc, linhaGrupo, linhaFab, linhaUnd, linhaPrecocomp, linhaprecovenda, linhamarkup, numero_id))
         banco.commit()
 # fuções da tela de cadastro Usuário
 def cadastrousuario():
@@ -148,14 +147,15 @@ def editar_produto():
     produto = cursor.fetchall()
     frm_produto.show()
 
-    frm_produto.lineEdit_3.setText(str(produto[0][0])) #campo codico
-    frm_produto.lineEdit_2.setText(str(produto[0][1])) #campo descrição 
-    frm_produto.lineEdit_4.setText(str(produto[0][2])) #campo grupo
-    frm_produto.lineEdit_6.setText(str(produto[0][3])) #campo fabricante 
-    frm_produto.lineEdit_7.setText(str(produto[0][4])) #campo undade
+    frm_produto.line_ean.setText(str(produto[0][0])) #campo codico
+    frm_produto.line_descricao.setText(str(produto[0][1])) #campo descrição 
+    frm_produto.line_grupo.setText(str(produto[0][2])) #campo grupo
+    frm_produto.line_fabric.setText(str(produto[0][3])) #campo fabricante 
+    frm_produto.line_tipo_und.setText(str(produto[0][4])) #campo undade
     frm_produto.precounid.setText(str(produto[0][5])) #campo preço por unidade
     frm_produto.precovenda.setText(str(produto[0][6])) #campo preço de venda
     frm_produto.markup.textsetText(str(produto[0][7])) #campo margem de lucro
+    
     numero_id = valor_id    
 
 def salvar_prod_editado():
