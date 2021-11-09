@@ -49,8 +49,8 @@ def cadastroProduto():
 
     if not linhaCod == numero_id:
         cursor = banco.cursor()
-        comando_SQL = "INSERT INTO produtos (codico, descricao, grupo, fabricante, unidade, pcound, pcovenda, markup, quantestoque) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), str(linhaPrecocomp), str(linhaprecovenda), str(linhamarkup), str(quantestoque))
+        comando_SQL = "INSERT INTO produtos (codico, descricao, grupo, fabricante, unidade, pcound, pcovenda, markup) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), str(linhaPrecocomp), str(linhaprecovenda), str(linhamarkup))
         cursor.execute(comando_SQL,dados)
         banco.commit()
     else:
