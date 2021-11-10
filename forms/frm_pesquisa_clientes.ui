@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>frm_pesquisa_clientes</class>
+ <widget class="QMainWindow" name="frm_pesquisa_clientes">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -70,7 +70,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>81</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -81,9 +81,9 @@
    <widget class="QLineEdit" name="linepesquisar">
     <property name="geometry">
      <rect>
-      <x>86</x>
+      <x>114</x>
       <y>10</y>
-      <width>479</width>
+      <width>451</width>
       <height>23</height>
      </rect>
     </property>
