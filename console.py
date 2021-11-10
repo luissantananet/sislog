@@ -32,7 +32,7 @@ def funcao_login():
 # fuções da tela de cadastro produtos
 def cadastroProduto():
     global numero_id
-    
+    idproduto = frm_produto.lineID.text() #campo ID
     linhaCod = frm_produto.line_ean.text() #campo codico
     linhaDesc = frm_produto.line_descricao.text() #campo descrição 
     linhaGrupo = frm_produto.line_grupo.text() #campo grupo
@@ -47,7 +47,7 @@ def cadastroProduto():
     cursor.execute(comando_SQL_id)
     numero_id = cursor.fetchall()
 
-    if not linhaCod == numero_id:
+    if not idproduto == numero_id:
         cursor = banco.cursor()
         comando_SQL = "INSERT INTO tblproduto (codico, descricao, grupo, fabricante, unidade, pcound, pcovenda, markup) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), str(linhaPrecocomp), str(linhaprecovenda), str(linhamarkup))
@@ -163,7 +163,7 @@ def salvar_prod_editado():
 # fuções da tela de cadastro clientes
 def cadastroCliente():
     global numero_id
-    idcliente = frm_cliente.line_id.text()
+    idcliente = frm_cliente.line_id.text() #campo ID
     cnpjcpf = frm_cliente.line_cnpjcpf.text()
     descricao = frm_cliente.line_descricao.text()
     cep = frm_cliente.line_cep.text()
