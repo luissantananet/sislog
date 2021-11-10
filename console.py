@@ -32,7 +32,7 @@ def funcao_login():
 # fuções da tela de cadastro produtos
 def cadastroProduto():
     global numero_id
-
+    
     linhaCod = frm_produto.line_ean.text() #campo codico
     linhaDesc = frm_produto.line_descricao.text() #campo descrição 
     linhaGrupo = frm_produto.line_grupo.text() #campo grupo
@@ -43,19 +43,19 @@ def cadastroProduto():
     linhamarkup = frm_produto.linemarkup.text() #campo margem de lucro
     #comando mysql para inserir dados no banco
     cursor = banco.cursor()
-    comando_SQL_id = "SELECT id FROM produtos"
+    comando_SQL_id = "SELECT id FROM tblproduto"
     cursor.execute(comando_SQL_id)
     numero_id = cursor.fetchall()
 
     if not linhaCod == numero_id:
         cursor = banco.cursor()
-        comando_SQL = "INSERT INTO produtos (codico, descricao, grupo, fabricante, unidade, pcound, pcovenda, markup) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        comando_SQL = "INSERT INTO tblproduto (codico, descricao, grupo, fabricante, unidade, pcound, pcovenda, markup) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), str(linhaPrecocomp), str(linhaprecovenda), str(linhamarkup))
         cursor.execute(comando_SQL,dados)
         banco.commit()
     else:
         cursor = banco.cursor()
-        cursor.execute ("UPDATE produtos SET codico ='{}', descricao ='{}', grupo ='{}', fabricante ='{}', unidade ='{}',pcound ='{}', pcovenda ='{}', markup ='{}' WHERE id {}".format(linhaCod, linhaDesc, linhaGrupo, linhaFab, linhaUnd, linhaPrecocomp, linhaprecovenda, linhamarkup, numero_id))
+        cursor.execute ("UPDATE tblproduto SET codico ='{}', descricao ='{}', grupo ='{}', fabricante ='{}', unidade ='{}',pcound ='{}', pcovenda ='{}', markup ='{}' WHERE id {}".format(linhaCod, linhaDesc, linhaGrupo, linhaFab, linhaUnd, linhaPrecocomp, linhaprecovenda, linhamarkup, numero_id))
         banco.commit()
 # fuções da tela de cadastro Usuário
 def cadastrousuario():
@@ -162,7 +162,33 @@ def salvar_prod_editado():
     pass
 # fuções da tela de cadastro clientes
 def cadastroCliente():
-    pass
+    global numero_id
+    idcliente = frm_cliente.line_id.text()
+    cnpjcpf = frm_cliente.line_cnpjcpf.text()
+    descricao = frm_cliente.line_descricao.text()
+    cep = frm_cliente.line_cep.text()
+    endereco = frm_cliente.line_endereco.text()
+    bairro = frm_cliente.line_bairro.text()
+    cidade = frm_cliente.line_cidade.text()
+    estado = frm_cliente.line_estado.text()
+    telefone = frm_cliente.line_telefone.text()
+    celular = frm_cliente.line_celular.txt
+    email = frm_cliente.line_email.text()
+    #comando mysql para inserir dados no banco
+    cursor = banco.cursor()
+    comando_SQL_id = "SELECT id FROM tblcliente"
+    cursor.execute(comando_SQL_id)
+    numero_id = cursor.fetchall()
+    if not idcliente == numero_id:
+        cursor = banco.cursor()
+        comando_SQL = "INSERT INTO tblcliente (cnpcpf,descricao,cep,endereco,bairro,cidade,uf,telefone,celular,email) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        dados = (str(cnpjcpf), str(descricao), str(cep), str(endereco), str(bairro), str(cidade), str(estado), str(telefone),str(celular),str(email))
+        cursor.execute(comando_SQL,dados)
+        banco.commit()
+    else:
+        cursor = banco.cursor()
+        cursor.execute ("UPDATE tblcliente SET cnpcpf ='{}', descricao ='{}', cep ='{}', endereco ='{}', bairro ='{}',cidade ='{}', uf ='{}', telefone ='{}', celular = '{}', email = '{}' WHERE id {}".format(cnpjcpf,descricao,cep,endereco,bairro,cidade,estado,telefone,celular,email))
+        banco.commit()
 
 if __name__ == "__main__":
     # chamando as telas

@@ -113,7 +113,7 @@
     <property name="title">
      <string>Endereço</string>
     </property>
-    <widget class="QLineEdit" name="line_enderaco">
+    <widget class="QLineEdit" name="line_endereco">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -379,7 +379,7 @@
   <tabstop>btn_pesquisar</tabstop>
   <tabstop>line_descricao</tabstop>
   <tabstop>line_cep</tabstop>
-  <tabstop>line_enderaco</tabstop>
+  <tabstop>line_endereco</tabstop>
   <tabstop>line_bairro</tabstop>
   <tabstop>line_cidade</tabstop>
   <tabstop>line_estado</tabstop>
