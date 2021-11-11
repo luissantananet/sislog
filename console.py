@@ -10,7 +10,7 @@ banco = mysql.connector.connect(
     user="root",
     passwd="cofggcvf",
     database="dbstore")
-# fuções da tela login
+# funções da tela login
 def funcao_login():
     #frm_login.lineuser.setText("")
     nome_user =frm_login.lineuser.text()
@@ -28,7 +28,7 @@ def funcao_login():
     else:
         #frm_login.close()
         QMessageBox.about(frm_login, "Erro", "Usuário ou senha invalido!")       
-# fuções da tela de cadastro Usuário
+# funções da tela de cadastro Usuário
 def cadastrousuario():
     linhanome = frm_caduser.lineNome.text() #campo Nome
     linhauser = frm_caduser.lineUser.text() #campo Usuário
@@ -42,14 +42,14 @@ def cadastrousuario():
     frm_caduser.lineNome.setText('')
     frm_caduser.lineUser.setText('')
     frm_caduser.lineKey.setText('')
-# fuções da tela da Calcular Markup
+# funções da tela da Calcular Markup
 def calcular():
     dv = float(frm_markup.linedv.text())
     df = float(frm_markup.linedf.text())
     lp = float(frm_markup.linelp.text())
     markups = 100 / (100 - (dv + df + lp))
     frm_markup.linemarkup.setText("{:.2f}".format(markups))
-# fuções da tela da Calcular Markup
+# funções da tela da Calcular Markup
 def enviarmarkup():
     markups2 = frm_markup.linemarkup.text()
     precocompra = frm_produto.precounid.text()
@@ -59,7 +59,7 @@ def enviarmarkup():
         markup = float(frm_produto.linemarkup.text())
         venda = float(precocompra) + markup
         frm_produto.precovenda.setText("{:.2f}".format(venda))
-# fuções da tela de produtos
+# funções da tela de produtos
 def cadastroProduto():
     global numero_id
     idproduto = frm_produto.lineID.text() #campo ID
@@ -119,7 +119,7 @@ def editar_produto():
     frm_produto.markup.textsetText(str(produto[0][7])) #campo margem de lucro
     
     numero_id = valor_id    
-# fuções da tela de cadastro clientes
+# funções da tela de cadastro clientes
 def cadastroCliente():
     global numero_id
     idcliente = frm_cliente.line_id.text() #campo ID
@@ -183,6 +183,14 @@ def editarCliente():
     frm_cliente.line_email.setText(str(clientes[0][10])) #campo E-mail
     
     numero_id = valor_id 
+# funções da tela vendas(pedidos)
+def inserir_produto():
+    cliente = frm_vendas.Box_cliente.tex()
+    idprod = frm_vendas.line_idprod.text()
+    line_descprod = frm_vendas.line_descprod.text()
+    edt_quant = frm_vendas.edt_quant.text()
+def finaliza_venda():
+    pass
 
 def salvar_prod_editado():# Esta função provavelmente não sera utilizada(em Observação)
     pass

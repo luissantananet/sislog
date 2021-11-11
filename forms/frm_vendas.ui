@@ -79,7 +79,7 @@
    <property name="title">
     <string>Itens</string>
    </property>
-   <widget class="QLineEdit" name="linenunprod_2">
+   <widget class="QLineEdit" name="line_idprod">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -89,7 +89,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="linedescprod_2">
+   <widget class="QLineEdit" name="line_descprod">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -129,7 +129,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineestoque_2">
+   <widget class="QLineEdit" name="line_estoque">
     <property name="enabled">
      <bool>false</bool>
     </property>
@@ -387,7 +387,7 @@
     <string>Número</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="linedatahora">
+  <widget class="QLineEdit" name="line_datahora">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -403,7 +403,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="Box_cliente">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -428,7 +428,7 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>comboBox</tabstop>
+  <tabstop>Box_cliente</tabstop>
   <tabstop>btn_pesquisaprod</tabstop>
   <tabstop>edt_quant</tabstop>
   <tabstop>btn_inserir</tabstop>
@@ -440,14 +440,14 @@
   <tabstop>btn_finalizar</tabstop>
   <tabstop>btn_cancelar</tabstop>
   <tabstop>btn_fechar</tabstop>
-  <tabstop>linedescprod_2</tabstop>
+  <tabstop>line_descprod</tabstop>
   <tabstop>line_idpedido</tabstop>
   <tabstop>line_itenstotal</tabstop>
   <tabstop>line_valoritenstotal</tabstop>
   <tabstop>tableWidget</tabstop>
-  <tabstop>lineestoque_2</tabstop>
-  <tabstop>linedatahora</tabstop>
-  <tabstop>linenunprod_2</tabstop>
+  <tabstop>line_estoque</tabstop>
+  <tabstop>line_datahora</tabstop>
+  <tabstop>line_idprod</tabstop>
  </tabstops>
  <resources/>
  <connections/>
