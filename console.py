@@ -1,4 +1,4 @@
-from PyQt5 import uic, QtWidgets 
+from PyQt5 import uic, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMessageBox
 import mysql.connector
 import mysql.connector.errors
@@ -185,10 +185,33 @@ def editarCliente():
     numero_id = valor_id 
 # funções da tela vendas(pedidos)
 def inserir_produto():
-    cliente = frm_vendas.Box_cliente.tex()
+    # Inserindo produtos no grid(lista)
+    rowPosition = frm_vendas.tableWidget.rowCount()
+    frm_vendas.tableWidget.insertRow(rowPosition)
     idprod = frm_vendas.line_idprod.text()
     line_descprod = frm_vendas.line_descprod.text()
-    edt_quant = frm_vendas.edt_quant.text()
+    quant = frm_vendas.edt_quant.text()
+    valorund = frm_vendas.edt_valorund.text()
+    porsdesc = frm_vendas.edt_porsdesc.text()
+    valordesc = frm_vendas.edt_valordesc.text()
+    numcols = frm_vendas.tableWidget.columnCount()
+    numrows = frm_vendas.tableWidget.rowCount()
+    frm_vendas.tableWidget.setRowCount(numrows)
+    frm_vendas.tableWidget.setColumnCount(numcols)
+    frm_vendas.tableWidget.setItem(numrows -1,0,QtGui.QTableWidgetItem(idprod))
+    frm_vendas.tableWidget.setItem(numrows -1,1,QtGui.QTableWidgetItem(line_descprod))
+    frm_vendas.tableWidget.setItem(numrows -1,2,QtGui.QTableWidgetItem(quant))
+    frm_vendas.tableWidget.setItem(numrows -1,3,QtGui.QTableWidgetItem(valorund))
+    frm_vendas.tableWidget.setItem(numrows -1,4,QtGui.QTableWidgetItem(porsdesc))
+    frm_vendas.tableWidget.setItem(numrows -1,5,QtGui.QTableWidgetItem(valordesc))
+
+    totalitem = len(numrows) + 1
+    totalquant = (frm_vendas.tableWidget.setItem(numrows -1,2,QtGui.QTableWidgetItem(quant))) + quant
+
+    frm_vendas.line_itenstotal.insert(totalitem)
+    frm_vendas.line_valortotal.insert(totalquant)
+
+
 def finaliza_venda():
     pass
 
