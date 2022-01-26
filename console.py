@@ -1,3 +1,4 @@
+from ctypes.wintypes import FLOAT
 from PyQt5 import uic, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMessageBox
 import mysql.connector
@@ -44,21 +45,25 @@ def cadastrousuario():
     frm_caduser.lineKey.setText('')
 # funções da tela da Calcular Markup
 def calcular():
-    dv = float(frm_markup.linedv.text())
-    df = float(frm_markup.linedf.text())
-    lp = float(frm_markup.linelp.text())
-    markups = 100 / (100 - (dv + df + lp))
+    dv = str(frm_markup.linedv.text()).replace(',','.')
+    dv1 = float(dv)
+    df = str(frm_markup.linedf.text()).replace(',','.')
+    df1 = float(df)
+    lp = str(frm_markup.linelp.text()).replace(',','.')
+    lp1 = float(lp)
+    markups = 100 / (100 - (dv1 + df1 + lp1))
     frm_markup.linemarkup.setText("{:.2f}".format(markups))
 # funções da tela da Calcular Markup
 def enviarmarkup():
     markups2 = frm_markup.linemarkup.text()
-    precocompra = frm_produto.precounid.text()
+    precocompra = str(frm_produto.precounid.text()).replace(',','.')
+    precocompra = float(precocompra)
     frm_markup.close()
     frm_produto.linemarkup.setText(str(markups2))
     if not precocompra == '':
         markup = float(frm_produto.linemarkup.text())
         venda = float(precocompra) + markup
-        frm_produto.precovenda.setText("{:.2f}".format(venda))
+        frm_produto.precovenda.setText("{:.2f}".format(venda).replace('.',','))
 # funções da tela de produtos
 def cadastroProduto():
     global numero_id
@@ -73,11 +78,11 @@ def cadastroProduto():
     linhamarkup = frm_produto.linemarkup.text() #campo margem de lucro
     #comando mysql para inserir dados no banco
     cursor = banco.cursor()
-    comando_SQL_id = "SELECT id FROM tblproduto"
+    comando_SQL_id = "SELECT idproduto FROM tblproduto"
     cursor.execute(comando_SQL_id)
     numero_id = cursor.fetchall()
 
-    if not idproduto == numero_id:
+    if idproduto != numero_id:
         cursor = banco.cursor()
         comando_SQL = "INSERT INTO tblproduto (codico, descricao, grupo, fabricante, unidade, pcound, pcovenda, markup) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), str(linhaPrecocomp), str(linhaprecovenda), str(linhamarkup))
