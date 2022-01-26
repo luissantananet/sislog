@@ -88,14 +88,20 @@ def cadastroProduto():
         cursor.execute ("UPDATE tblproduto SET codico ='{}', descricao ='{}', grupo ='{}', fabricante ='{}', unidade ='{}',pcound ='{}', pcovenda ='{}', markup ='{}' WHERE id {}".format(linhaCod, linhaDesc, linhaGrupo, linhaFab, linhaUnd, linhaPrecocomp, linhaprecovenda, linhamarkup, numero_id))
         banco.commit()
 def exclir_produtos():
+    global numero_id
     linha = frm_pesquisa_produto.tableWidget.currentRow()
-    frm_pesquisa_produto.tableWidget.removeRow(linha)
+    
 
     cursor = banco.cursor()
     cursor.execute("SELECT id FROM tblproduto")
     dados_lidos = cursor.fetchall()
     valor_id = dados_lidos[linha][0]
-    cursor.execute("DELETE FROM tblprodutos WHERE id="+str(valor_id))
+    if valor_id != " ":
+        cursor.execute("DELETE FROM tblprodutos WHERE id="+str(valor_id))
+        frm_pesquisa_produto.tableWidget.removeRow(linha)
+    else:
+        QMessageBox.about(frm_login, "Erro", "ID do Porduto não infornado!")
+
 def editar_produto():
     global numero_id
     linha = frm_pesquisa_produto.tableWidget.currentRow()
