@@ -333,24 +333,24 @@
      <x>0</x>
      <y>0</y>
      <width>405</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>line_descricao</tabstop>
   <tabstop>line_ean</tabstop>
+  <tabstop>line_descricao</tabstop>
   <tabstop>btnPesquisa</tabstop>
-  <tabstop>precounid</tabstop>
-  <tabstop>btn_calc_markup</tabstop>
-  <tabstop>linemarkup</tabstop>
-  <tabstop>precovenda</tabstop>
-  <tabstop>line_tipo_und</tabstop>
   <tabstop>line_grupo</tabstop>
   <tabstop>line_fabric</tabstop>
+  <tabstop>line_tipo_und</tabstop>
+  <tabstop>precounid</tabstop>
+  <tabstop>btn_calc_markup</tabstop>
   <tabstop>btnSalvar</tabstop>
   <tabstop>pushButton</tabstop>
+  <tabstop>precovenda</tabstop>
+  <tabstop>linemarkup</tabstop>
   <tabstop>lineID</tabstop>
  </tabstops>
  <resources/>

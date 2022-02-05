@@ -66,7 +66,7 @@ def enviarmarkup():
         frm_produto.precovenda.setText("{:.2f}".format(venda).replace('.',','))
 # funções da tela de produtos
 def cadastroProduto():
-    global numero_id
+    #global numero_id
     idproduto = frm_produto.lineID.text() #campo ID
     linhaCod = frm_produto.line_ean.text() #campo codico
     linhaDesc = frm_produto.line_descricao.text() #campo descrição 
@@ -76,22 +76,19 @@ def cadastroProduto():
     linhaPrecocomp = frm_produto.precounid.text() #campo preço por unidade
     linhaprecovenda = frm_produto.precovenda.text() #campo preço de venda
     linhamarkup = frm_produto.linemarkup.text() #campo margem de lucro
-    #comando mysql para inserir dados no banco
-    cursor = banco.cursor()
+    #comando mysql para selecionar os id's do produtos
+    """cursor = banco.cursor()
     comando_SQL_id = "SELECT idproduto FROM tblproduto"
     cursor.execute(comando_SQL_id)
     numero_id = cursor.fetchall()
-
-    if idproduto != numero_id:
-        cursor = banco.cursor()
-        comando_SQL = "INSERT INTO tblproduto (codico, descricao, grupo, fabricante, unidade, pcound, pcovenda, markup) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), str(linhaPrecocomp), str(linhaprecovenda), str(linhamarkup))
-        cursor.execute(comando_SQL,dados)
-        banco.commit()
-    else:
-        cursor = banco.cursor()
-        cursor.execute ("UPDATE tblproduto SET codico ='{}', descricao ='{}', grupo ='{}', fabricante ='{}', unidade ='{}',pcound ='{}', pcovenda ='{}', markup ='{}' WHERE id {}".format(linhaCod, linhaDesc, linhaGrupo, linhaFab, linhaUnd, linhaPrecocomp, linhaprecovenda, linhamarkup, numero_id))
-        banco.commit()
+"""
+    #comando mysql para inserir dados no banco
+    cursor = banco.cursor()
+    comando_SQL = "INSERT INTO tblproduto (ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), str(linhaPrecocomp), str(linhamarkup), str(linhaprecovenda))
+    cursor.execute(comando_SQL,dados)
+    banco.commit()
+    
 def exclir_produtos():
     global numero_id
     linha = frm_pesquisa_produto.tableWidget.currentRow()
