@@ -67,7 +67,7 @@ def enviarmarkup():
 # funções da tela de produtos
 def cadastroProduto():
     #global numero_id
-    idproduto = frm_produto.lineID.text() #campo ID
+    
     linhaCod = frm_produto.line_ean.text() #campo codico
     linhaDesc = frm_produto.line_descricao.text() #campo descrição 
     linhaGrupo = frm_produto.line_grupo.text() #campo grupo
@@ -76,12 +76,6 @@ def cadastroProduto():
     linhaPrecocomp = frm_produto.precounid.text().replace(',','.') #campo preço por unidade
     linhaprecovenda = frm_produto.precovenda.text().replace(',','.') #campo preço de venda
     linhamarkup = frm_produto.linemarkup.text().replace(',','.') #campo margem de lucro
-    #comando mysql para selecionar os id's do produtos
-    """cursor = banco.cursor()
-    comando_SQL_id = "SELECT idproduto FROM tblproduto"
-    cursor.execute(comando_SQL_id)
-    numero_id = cursor.fetchall()
-"""
     #comando mysql para inserir dados no banco
     cursor = banco.cursor()
     comando_SQL = "INSERT INTO tblproduto (ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -99,8 +93,6 @@ def cadastroProduto():
 def exclir_produtos():
     global numero_id
     linha = frm_pesquisa_produto.tableWidget.currentRow()
-    
-
     cursor = banco.cursor()
     cursor.execute("SELECT id FROM tblproduto")
     dados_lidos = cursor.fetchall()
