@@ -85,7 +85,7 @@ def cadastroProduto():
         banco.commit()
     else:
         cursor = banco.cursor()
-        cursor.execute ("UPDATE tblproduto SET ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,id))
+        cursor.execute ("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,id))
         banco.commit()
 
 
