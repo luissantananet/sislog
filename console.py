@@ -77,16 +77,18 @@ def cadastroProduto():
     linhaprecovenda = frm_produto.precovenda.text().replace(',','.') #campo preço de venda
     linhamarkup = frm_produto.linemarkup.text().replace(',','.') #campo margem de lucro
     #comando mysql para inserir dados no banco
-    if id == " ":
+    if id == "":
         cursor = banco.cursor()
         comando_SQL = "INSERT INTO tblproduto (ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
         dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), float(linhaPrecocomp), float(linhamarkup), float(linhaprecovenda))
         cursor.execute(comando_SQL,dados)
         banco.commit()
     else:
+        idproduto = int(numero_id)
         cursor = banco.cursor()
-        cursor.execute ("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,numero_id))
+        cursor.execute ("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,idproduto))
         banco.commit()
+        
 
 
     linhaCod = frm_produto.line_ean.setText('') #campo codico
@@ -135,6 +137,7 @@ def editar_produto():
     
     numero_id = valor_id    
     frm_pesquisa_produto.close()
+    
 # funções da tela de cadastro clientes
 def cadastroCliente():
     global numero_id
