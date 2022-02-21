@@ -67,7 +67,7 @@ def enviarmarkup():
 # funções da tela de produtos
 def cadastroProduto():
     #global numero_id
-    
+    id = frm_produto.lineID.text() #campo ID
     linhaCod = frm_produto.line_ean.text() #campo codico
     linhaDesc = frm_produto.line_descricao.text() #campo descrição 
     linhaGrupo = frm_produto.line_grupo.text() #campo grupo
@@ -77,11 +77,18 @@ def cadastroProduto():
     linhaprecovenda = frm_produto.precovenda.text().replace(',','.') #campo preço de venda
     linhamarkup = frm_produto.linemarkup.text().replace(',','.') #campo margem de lucro
     #comando mysql para inserir dados no banco
-    cursor = banco.cursor()
-    comando_SQL = "INSERT INTO tblproduto (ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-    dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), float(linhaPrecocomp), float(linhamarkup), float(linhaprecovenda))
-    cursor.execute(comando_SQL,dados)
-    banco.commit()
+    if id == " ":
+        cursor = banco.cursor()
+        comando_SQL = "INSERT INTO tblproduto (ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+        dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), float(linhaPrecocomp), float(linhamarkup), float(linhaprecovenda))
+        cursor.execute(comando_SQL,dados)
+        banco.commit()
+    else:
+        cursor = banco.cursor()
+        cursor.execute ("UPDATE tblproduto SET ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,id))
+        banco.commit()
+
+
     linhaCod = frm_produto.line_ean.setText('') #campo codico
     linhaDesc = frm_produto.line_descricao.setText('') #campo descrição 
     linhaGrupo = frm_produto.line_grupo.setText('') #campo grupo
@@ -90,18 +97,19 @@ def cadastroProduto():
     linhaPrecocomp = frm_produto.precounid.setText('') #campo preço por unidade
     linhaprecovenda = frm_produto.precovenda.setText('') #campo preço de venda
     linhamarkup = frm_produto.linemarkup.setText('') #campo margem de lucro
-def exclir_produtos():
+def excluir_produtos():
     global numero_id
     linha = frm_pesquisa_produto.tableWidget.currentRow()
     cursor = banco.cursor()
-    cursor.execute("SELECT id FROM tblproduto")
+    cursor.execute("SELECT idproduto FROM tblproduto")
     dados_lidos = cursor.fetchall()
     valor_id = dados_lidos[linha][0]
     if valor_id != " ":
-        cursor.execute("DELETE FROM tblprodutos WHERE id="+str(valor_id))
-        frm_pesquisa_produto.tableWidget.removeRow(linha)
+        cursor = banco.cursor()
+        cursor.execute("delete from tblproduto WHERE idproduto ="+int(valor_id))
+        #frm_pesquisa_produto.tableWidget.removeRow(linha)
     else:
-        QMessageBox.about(frm_login, "Erro", "ID do Porduto não infornado!")
+        QMessageBox.about(frm_pesquisa_produto, "Erro", "Porduto não selecionado!")
 
 def editar_produto():
     global numero_id
@@ -112,20 +120,21 @@ def editar_produto():
     cursor.execute(comando_SQL)
     dados_lidos = cursor.fetchall()
     valor_id = dados_lidos[linha][0]
-    cursor.execute("SELECT * FROM tblproduto WHERE id="+str(valor_id))
+    cursor.execute("SELECT * FROM tblproduto WHERE idproduto="+str(valor_id))
     produto = cursor.fetchall()
     frm_produto.show()
-
-    frm_produto.line_ean.setText(str(produto[0][0])) #campo codico
-    frm_produto.line_descricao.setText(str(produto[0][1])) #campo descrição 
-    frm_produto.line_grupo.setText(str(produto[0][2])) #campo grupo
-    frm_produto.line_fabric.setText(str(produto[0][3])) #campo fabricante 
-    frm_produto.line_tipo_und.setText(str(produto[0][4])) #campo undade
-    frm_produto.precounid.setText(str(produto[0][5])) #campo preço por unidade
-    frm_produto.precovenda.setText(str(produto[0][6])) #campo preço de venda
-    frm_produto.markup.textsetText(str(produto[0][7])) #campo margem de lucro
+    frm_produto.lineID.setText(str(produto[0][0])) #campo ID
+    frm_produto.line_ean.setText(str(produto[0][1])) #campo EAN(codico do produto)
+    frm_produto.line_descricao.setText(str(produto[0][2])) #campo descrição 
+    frm_produto.line_grupo.setText(str(produto[0][3])) #campo grupo
+    frm_produto.line_fabric.setText(str(produto[0][4])) #campo fabricante 
+    frm_produto.line_tipo_und.setText(str(produto[0][5])) #campo undade
+    frm_produto.precounid.setText(str(produto[0][6])) #campo preço por unidade
+    frm_produto.precovenda.setText(str(produto[0][7])) #campo preço de venda
+    frm_produto.linemarkup.setText(str(produto[0][8])) #campo margem de lucro
     
     numero_id = valor_id    
+    frm_pesquisa_produto.close()
 # funções da tela de cadastro clientes
 def cadastroCliente():
     global numero_id
@@ -290,7 +299,7 @@ if __name__ == "__main__":
     # botões da tela cadastro de Usuáios
     frm_caduser.btnSalvar.clicked.connect(cadastrousuario)
     # botões da tela de pesquisa
-    frm_pesquisa_produto.btnExcluir.clicked.connect(exclir_produtos)
+    frm_pesquisa_produto.btnExcluir.clicked.connect(excluir_produtos)
     frm_pesquisa_produto.btnEdit.clicked.connect(editar_produto)
     frm_pesquisa_produto.btn_estoque.clicked.connect(chamaestoque)
 
