@@ -73,9 +73,9 @@ def cadastroProduto():
     linhaGrupo = frm_produto.line_grupo.text() #campo grupo
     linhaFab = frm_produto.line_fabric.text() #campo fabricante 
     linhaUnd = frm_produto.line_tipo_und.text() #campo undade
-    linhaPrecocomp = frm_produto.precounid.text() #campo preço por unidade
-    linhaprecovenda = frm_produto.precovenda.text() #campo preço de venda
-    linhamarkup = frm_produto.linemarkup.text() #campo margem de lucro
+    linhaPrecocomp = frm_produto.precounid.text().replace(',','.') #campo preço por unidade
+    linhaprecovenda = frm_produto.precovenda.text().replace(',','.') #campo preço de venda
+    linhamarkup = frm_produto.linemarkup.text().replace(',','.') #campo margem de lucro
     #comando mysql para selecionar os id's do produtos
     """cursor = banco.cursor()
     comando_SQL_id = "SELECT idproduto FROM tblproduto"
@@ -84,11 +84,18 @@ def cadastroProduto():
 """
     #comando mysql para inserir dados no banco
     cursor = banco.cursor()
-    comando_SQL = "INSERT INTO tblproduto (ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-    dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), str(linhaPrecocomp), str(linhamarkup), str(linhaprecovenda))
+    comando_SQL = "INSERT INTO tblproduto (ean, descricao, categoria, fabricante, unidade, precocusto, markup, precovenda) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+    dados = (str(linhaCod), str(linhaDesc), str(linhaGrupo), str(linhaFab), str(linhaUnd), float(linhaPrecocomp), float(linhamarkup), float(linhaprecovenda))
     cursor.execute(comando_SQL,dados)
     banco.commit()
-    
+    linhaCod = frm_produto.line_ean.setText('') #campo codico
+    linhaDesc = frm_produto.line_descricao.setText('') #campo descrição 
+    linhaGrupo = frm_produto.line_grupo.setText('') #campo grupo
+    linhaFab = frm_produto.line_fabric.setText('') #campo fabricante 
+    linhaUnd = frm_produto.line_tipo_und.setText('') #campo undade
+    linhaPrecocomp = frm_produto.precounid.setText('') #campo preço por unidade
+    linhaprecovenda = frm_produto.precovenda.setText('') #campo preço de venda
+    linhamarkup = frm_produto.linemarkup.setText('') #campo margem de lucro
 def exclir_produtos():
     global numero_id
     linha = frm_pesquisa_produto.tableWidget.currentRow()
