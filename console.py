@@ -66,7 +66,7 @@ def enviarmarkup():
         frm_produto.precovenda.setText("{:.2f}".format(venda).replace('.',','))
 # funções da tela de produtos
 def cadastroProduto():
-    #global numero_id
+    global numero_id
     id = frm_produto.lineID.text() #campo ID
     linhaCod = frm_produto.line_ean.text() #campo codico
     linhaDesc = frm_produto.line_descricao.text() #campo descrição 
@@ -85,7 +85,7 @@ def cadastroProduto():
         banco.commit()
     else:
         cursor = banco.cursor()
-        cursor.execute ("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,id))
+        cursor.execute ("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,numero_id))
         banco.commit()
 
 
@@ -162,7 +162,7 @@ def cadastroCliente():
         banco.commit()
     else:
         cursor = banco.cursor()
-        cursor.execute ("UPDATE tblcliente SET cnpcpf ='{}', descricao ='{}', cep ='{}', endereco ='{}', bairro ='{}',cidade ='{}', uf ='{}', telefone ='{}', celular = '{}', email = '{}' WHERE id {}".format(cnpjcpf,descricao,cep,endereco,bairro,cidade,estado,telefone,celular,email))
+        cursor.execute ("UPDATE tblcliente SET cnpcpf ='{}', descricao ='{}', cep ='{}', endereco ='{}', bairro ='{}',cidade ='{}', uf ='{}', telefone ='{}', celular = '{}', email = '{}' WHERE id {}".format(cnpjcpf,descricao,cep,endereco,bairro,cidade,estado,telefone,celular,email,numero_id))
         banco.commit()
 def excluirCliente():
     linhacliente = frm_pesquisa_cliente.tableWidget.currentRow()
