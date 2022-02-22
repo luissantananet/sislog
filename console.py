@@ -86,7 +86,7 @@ def cadastroProduto():
     else:
         idproduto = int(numero_id)
         cursor = banco.cursor()
-        cursor.execute ("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,idproduto))
+        cursor.execute("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,idproduto))
         banco.commit()
         
 
@@ -100,7 +100,7 @@ def cadastroProduto():
     linhaprecovenda = frm_produto.precovenda.setText('') #campo preço de venda
     linhamarkup = frm_produto.linemarkup.setText('') #campo margem de lucro
 def excluir_produtos():
-    global numero_id
+   
     linha = frm_pesquisa_produto.tableWidget.currentRow()
     cursor = banco.cursor()
     cursor.execute("SELECT idproduto FROM tblproduto")
@@ -135,9 +135,11 @@ def editar_produto():
     frm_produto.precovenda.setText(str(produto[0][7])) #campo preço de venda
     frm_produto.linemarkup.setText(str(produto[0][8])) #campo margem de lucro
     
-    numero_id = valor_id    
     frm_pesquisa_produto.close()
     
+    numero_id = valor_id 
+    print(numero_id)
+    print(type(numero_id))
 # funções da tela de cadastro clientes
 def cadastroCliente():
     global numero_id
