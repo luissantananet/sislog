@@ -164,7 +164,7 @@ def cadastroCliente():
         banco.commit()
     else:
         cursor = banco.cursor()
-        cursor.execute ("UPDATE tblcliente SET cnpcpf ='{}', descricao ='{}', cep ='{}', endereco ='{}', bairro ='{}',cidade ='{}', uf ='{}', telefone ='{}', celular = '{}', email = '{}' WHERE id {}".format(cnpjcpf,descricao,cep,endereco,bairro,cidade,estado,telefone,celular,email,numero_id))
+        cursor.execute ("UPDATE tblcliente SET cnpcpf ='{}', descricao ='{}', cep ='{}', endereco ='{}', bairro ='{}',cidade ='{}', uf ='{}', telefone ='{}', celular = '{}', email = '{}' WHERE id='{}'".format(cnpjcpf,descricao,cep,endereco,bairro,cidade,estado,telefone,celular,email,numero_id))
         banco.commit()
 def excluirCliente():
     linhacliente = frm_pesquisa_cliente.tableWidget.currentRow()
