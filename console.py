@@ -1,4 +1,5 @@
 from ctypes.wintypes import FLOAT
+from tkinter import messagebox
 from PyQt5 import uic, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMessageBox
 import mysql.connector
@@ -115,7 +116,6 @@ def excluir_produtos():
 def editar_produto():
     global numero_id
     linha = frm_pesquisa_produto.tableWidget.currentRow()
-
     cursor = banco.cursor()
     comando_SQL = "SELECT * FROM tblproduto"
     cursor.execute(comando_SQL)
@@ -242,6 +242,23 @@ def chamacliente():
     frm_cliente.show()
 def chamaestoque():
     frm_estoque.show()
+def pesquisaestoque():
+    
+    codico = frm_estoque.line_ean.text() #campo EAN(codico do produto)
+    cursor = banco.cursor()
+    comando_SQL = ("SELECT * FROM tblproduto LEFT JOIN tblestoque ON tblproduto.idproduto = tblestoque.idestoque WHERE ean="+str(codico)) 
+    cursor.execute(comando_SQL)
+    produto = cursor.fetchall()
+    
+    if codico == produto[0][1]:
+        frm_estoque.lineID.setText(str(produto[0][0])) #campo ID
+        frm_estoque.line_descricao.setText(str(produto[0][2])) #campo descrição 
+        frm_estoque.line_estoque.setText(str(produto[0][9])) #campo grupo
+        frm_estoque.line_quantidade.setText(str(produto[0][10])) #campo fabricante 
+    else:
+        QMessageBox.about(frm_estoque, "Erro", "Produto não cadastro!")
+        
+    
 def chamaproduto():
     frm_produto.show() 
 def chamamarkup():
@@ -259,10 +276,60 @@ def Chamapesquisa_produto():
     cursor.execute(comando_SQL)
     dados_lidos = cursor.fetchall()
     frm_pesquisa_produto.tableWidget.setRowCount(len(dados_lidos))
-    frm_pesquisa_produto.tableWidget.setColumnCount(8)
+    frm_pesquisa_produto.tableWidget.setColumnCount(10)
     for i in range(0, len(dados_lidos)):
         for j in range(0, 5):
             frm_pesquisa_produto.tableWidget.setItem(i,j,QtWidgets.QTableWidgetItem(str(dados_lidos[i][j])))
+def pesquisar_produto():
+    ids = frm_pesquisa_produto.line_ID.text()
+    codico = frm_pesquisa_produto.line_ean.text()
+    desc = frm_pesquisa_produto.line_descricao.text()
+    cat = frm_pesquisa_produto.line_cat.text()
+    cursor = banco.cursor()
+    comando_SQL = ("SELECT * FROM tblproduto") 
+    cursor.execute(comando_SQL)
+    produto = cursor.fetchall()
+    if ids == produto[0][0]:
+        cursor = banco.cursor()
+        comando_SQL = ("SELECT * FROM tblproduto WHERE idproduto="+int(ids))
+        cursor.execute(comando_SQL)
+        dados_lidos = cursor.fetchall()
+        frm_pesquisa_produto.tableWidget.setRowCount(len(dados_lidos))
+        frm_pesquisa_produto.tableWidget.setColumnCount(10)
+        for i in range(0, len(dados_lidos)):
+            for j in range(0, 5):
+                frm_pesquisa_produto.tableWidget.setItem(i,j,QtWidgets.QTableWidgetItem(str(dados_lidos[i][j])))
+    elif codico == produto[0][1]:
+        cursor = banco.cursor()
+        comando_SQL = ("SELECT * FROM tblproduto WHERE ean="+str(codico))
+        cursor.execute(comando_SQL)
+        dados_lidos = cursor.fetchall()
+        frm_pesquisa_produto.tableWidget.setRowCount(len(dados_lidos))
+        frm_pesquisa_produto.tableWidget.setColumnCount(10)
+        for i in range(0, len(dados_lidos)):
+            for j in range(0, 5):
+                frm_pesquisa_produto.tableWidget.setItem(i,j,QtWidgets.QTableWidgetItem(str(dados_lidos[i][j])))
+    elif desc == produto[0][2]:
+        cursor = banco.cursor()
+        comando_SQL = ("SELECT * FROM tblproduto WHERE descricao="+str(desc))
+        cursor.execute(comando_SQL)
+        dados_lidos = cursor.fetchall()
+        frm_pesquisa_produto.tableWidget.setRowCount(len(dados_lidos))
+        frm_pesquisa_produto.tableWidget.setColumnCount(10)
+        for i in range(0, len(dados_lidos)):
+            for j in range(0, 5):
+                frm_pesquisa_produto.tableWidget.setItem(i,j,QtWidgets.QTableWidgetItem(str(dados_lidos[i][j])))
+    else: 
+        cursor = banco.cursor()
+        comando_SQL = ("SELECT * FROM tblproduto WHERE categoria="+str(cat))
+        cursor.execute(comando_SQL)
+        dados_lidos = cursor.fetchall()
+        frm_pesquisa_produto.tableWidget.setRowCount(len(dados_lidos))
+        frm_pesquisa_produto.tableWidget.setColumnCount(10)
+        for i in range(0, len(dados_lidos)):
+            for j in range(0, 5):
+                frm_pesquisa_produto.tableWidget.setItem(i,j,QtWidgets.QTableWidgetItem(str(dados_lidos[i][j])))
+
 
 if __name__ == "__main__":
     # chamando as telas
@@ -303,7 +370,9 @@ if __name__ == "__main__":
     # botões da tela de pesquisa
     frm_pesquisa_produto.btnExcluir.clicked.connect(excluir_produtos)
     frm_pesquisa_produto.btnEdit.clicked.connect(editar_produto)
-    frm_pesquisa_produto.btn_estoque.clicked.connect(chamaestoque)
+    frm_pesquisa_produto.btn_pesquisar.clicked.connect(pesquisar_produto)
+    # botões da tela de estoque
+    frm_estoque.btn_pesquisar.clicked.connect(pesquisaestoque)
 
     frm_login.show()
     app.exec()

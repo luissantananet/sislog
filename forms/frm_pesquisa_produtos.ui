@@ -26,7 +26,7 @@
    <string>Produtos</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="line_ID">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -36,7 +36,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="line_descricao">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -46,7 +46,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="line_ean">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -56,7 +56,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="line_cat">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -191,19 +191,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_estoque">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>430</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Estoque</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -211,16 +198,16 @@
      <x>0</x>
      <y>0</y>
      <width>690</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_4</tabstop>
+  <tabstop>line_ID</tabstop>
+  <tabstop>line_descricao</tabstop>
+  <tabstop>line_ean</tabstop>
+  <tabstop>line_cat</tabstop>
   <tabstop>btn_pesquisar</tabstop>
   <tabstop>btnEdit</tabstop>
   <tabstop>btnExcluir</tabstop>
