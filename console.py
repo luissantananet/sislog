@@ -84,9 +84,8 @@ def cadastroProduto():
         cursor.execute(comando_SQL,dados)
         banco.commit()
     else:
-        idproduto = int(numero_id)
         cursor = banco.cursor()
-        cursor.execute("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto {}".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,idproduto))
+        cursor.execute("UPDATE tblproduto SET ean='{}', descricao='{}', categoria='{}', fabricante='{}', unidade='{}', precocusto='{}', markup='{}', precovenda='{}' WHERE idproduto= '{}'".format(linhaCod,linhaDesc,linhaGrupo,linhaFab,linhaUnd,linhaPrecocomp,linhamarkup,linhaprecovenda,numero_id))
         banco.commit()
         
 
@@ -137,9 +136,7 @@ def editar_produto():
     
     frm_pesquisa_produto.close()
     
-    numero_id = valor_id 
-    print(numero_id)
-    print(type(numero_id))
+    numero_id = valor_id
 # funções da tela de cadastro clientes
 def cadastroCliente():
     global numero_id
