@@ -258,7 +258,17 @@ def pesquisaestoque():
     else:
         QMessageBox.about(frm_estoque, "Erro", "Produto não cadastro!")
         
-    
+def chamapesquisa_cliente():
+    frm_pesquisa_cliente.show()
+    cursor = banco.cursor()
+    comando_SQL = "SELECT * FROM tblcliente"
+    cursor.execute(comando_SQL)
+    dados_lidos = cursor.fetchall()
+    frm_pesquisa_cliente.tableWidget.setRowCount(len(dados_lidos))
+    frm_pesquisa_cliente.tableWidget.setColumnCount(10)
+    for i in range(0, len(dados_lidos)):
+        for j in range(0, 5):
+            frm_pesquisa_cliente.tableWidget.setItem(i,j,QtWidgets.QTableWidgetItem(str(dados_lidos[i][j])))
 def chamaproduto():
     frm_produto.show() 
 def chamamarkup():
@@ -354,6 +364,8 @@ if __name__ == "__main__":
     frm_principal.actionUser.triggered.connect(chamacaduser)
     frm_principal.actionClientes.triggered.connect(chamacliente)
     frm_principal.actionEstoque.triggered.connect(chamaestoque)
+    # botões da tela cliente
+    frm_cliente.btn_pesquisar.clicked.connect(chamapesquisa_cliente)
 
     # botões da tela venda(caixa)
     frm_vendas.btn_pesquisaprod.clicked.connect(Chamapesquisa_produto)
