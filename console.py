@@ -10,7 +10,7 @@ numero_id = 0
 banco = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="cofggcvf",
+    passwd="1@!Cofggcvf",
     database="dbstore")
 # funções da tela login
 def funcao_login():
