@@ -100,11 +100,15 @@ def cadastroProduto():
     linhaprecovenda = frm_produto.precovenda.setText('') #campo preço de venda
     linhamarkup = frm_produto.linemarkup.setText('') #campo margem de lucro
 def excluir_produtos():
-   
+
     linha = frm_pesquisa_produto.tableWidget.currentRow()
     cursor = banco.cursor()
     cursor.execute("SELECT idproduto FROM tblproduto")
     dados_lidos = cursor.fetchall()
+    # Verifica se a linha selecionada é válida
+    if linha < 0 or linha >= len(dados_lidos):
+        QMessageBox.about(frm_pesquisa_produto, "Erro!", "Produto não selecionado!")
+        return
     valor_id = dados_lidos[linha][0]
     if valor_id != " ":
         cursor = banco.cursor()
@@ -120,20 +124,27 @@ def editar_produto():
     comando_SQL = "SELECT * FROM tblproduto"
     cursor.execute(comando_SQL)
     dados_lidos = cursor.fetchall()
+    # Verifica se a linha selecionada é válida
+    if linha < 0 or linha >= len(dados_lidos):
+        QMessageBox.about(frm_pesquisa_produto, "Erro!", "Produto não selecionado!")
+        return
+
     valor_id = dados_lidos[linha][0]
-    cursor.execute("SELECT * FROM tblproduto WHERE idproduto="+str(valor_id))
-    produto = cursor.fetchall()
-    frm_produto.show()
-    frm_produto.lineID.setText(str(produto[0][0])) #campo ID
-    frm_produto.line_ean.setText(str(produto[0][1])) #campo EAN(codico do produto)
-    frm_produto.line_descricao.setText(str(produto[0][2])) #campo descrição 
-    frm_produto.line_grupo.setText(str(produto[0][3])) #campo grupo
-    frm_produto.line_fabric.setText(str(produto[0][4])) #campo fabricante 
-    frm_produto.line_tipo_und.setText(str(produto[0][5])) #campo undade
-    frm_produto.precounid.setText(str(produto[0][6])) #campo preço por unidade
-    frm_produto.precovenda.setText(str(produto[0][7])) #campo preço de venda
-    frm_produto.linemarkup.setText(str(produto[0][8])) #campo margem de lucro
-    
+    if valor_id != " ":
+        cursor.execute("SELECT * FROM tblproduto WHERE idproduto="+str(valor_id))
+        produto = cursor.fetchall()
+        frm_produto.show()
+        frm_produto.lineID.setText(str(produto[0][0])) #campo ID
+        frm_produto.line_ean.setText(str(produto[0][1])) #campo EAN(codico do produto)
+        frm_produto.line_descricao.setText(str(produto[0][2])) #campo descrição 
+        frm_produto.line_grupo.setText(str(produto[0][3])) #campo grupo
+        frm_produto.line_fabric.setText(str(produto[0][4])) #campo fabricante 
+        frm_produto.line_tipo_und.setText(str(produto[0][5])) #campo undade
+        frm_produto.precounid.setText(str(produto[0][6])) #campo preço por unidade
+        frm_produto.precovenda.setText(str(produto[0][7])) #campo preço de venda
+        frm_produto.linemarkup.setText(str(produto[0][8])) #campo margem de lucro
+    else:
+        QMessageBox.about(frm_pesquisa_produto, "Erro!", "Produto não selecionado!")
     frm_pesquisa_produto.close()
     
     numero_id = valor_id
